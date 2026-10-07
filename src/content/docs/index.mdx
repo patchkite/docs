@@ -1,0 +1,40 @@
+---
+title: Patchkite
+description: Self-hosted over-the-air updates for React Native and Flutter.
+template: splash
+hero:
+  tagline: Ship JavaScript and Dart fixes to your users in minutes, from a server you run yourself.
+  image:
+    file: ../../assets/symbol.svg
+  actions:
+    - text: Get started
+      link: start/introduction/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/patchkite
+      icon: github
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="React Native and Flutter" icon="seti:javascript">
+		One server and one CLI for React Native (New Architecture, iOS and Android) and Flutter (Android).
+	</Card>
+	<Card title="Small downloads" icon="download">
+		Devices download only changed files, and large files such as the JS bundle or `libapp.so` are sent as binary patches.
+	</Card>
+	<Card title="Safe rollouts" icon="approve-check">
+		Staging and Production deployments, staged rollouts, mandatory updates, promote, and automatic rollback on crash.
+	</Card>
+	<Card title="Signed updates" icon="seti:lock">
+		Packages are signed with your RSA key, and the SDK refuses anything that doesn't verify.
+	</Card>
+	<Card title="Self-hosted" icon="seti:docker">
+		A single Docker image with PostgreSQL and any S3-compatible storage. Your code never leaves your infrastructure.
+	</Card>
+	<Card title="Open source" icon="open-book">
+		MIT licensed. Server, dashboard, CLI, and SDKs all live in the [patchkite](https://github.com/patchkite) organization.
+	</Card>
+</CardGrid>

@@ -1,6 +1,6 @@
 # Patchkite documentation
 
-Source of [patchkite.github.io/docs](https://patchkite.github.io/docs/), built with [Astro Starlight](https://starlight.astro.build).
+Source of [docs.patchkite.com](https://docs.patchkite.com/), built with [Astro Starlight](https://starlight.astro.build).
 
 ```bash
 npm install

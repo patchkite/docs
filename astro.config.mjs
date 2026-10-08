@@ -2,10 +2,9 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-// Served from GitHub Pages at https://patchkite.github.io/docs until a custom domain exists.
+// Served from the Patchkite VM behind Cloudflare Tunnel at https://docs.patchkite.com.
 export default defineConfig({
-	site: 'https://patchkite.github.io',
-	base: '/docs',
+	site: 'https://docs.patchkite.com',
 	integrations: [
 		starlight({
 			title: 'Patchkite',

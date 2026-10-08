@@ -1,7 +1,7 @@
 name: Deploy
 
 # Builds the static site into an nginx image and pushes it to GHCR.
-# The VM pulls the new image automatically (see deploy/docker-compose.yml).
+# The VM pulls it automatically: ~/sites runs this image behind an nginx router, and sites-update.timer runs `docker compose pull && up -d` every 5 minutes.
 on:
   push:
     branches: [main]

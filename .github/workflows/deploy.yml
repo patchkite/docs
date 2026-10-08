@@ -27,7 +27,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/patchkite/docsatest
+            ghcr.io/patchkite/docs:latest
             ghcr.io/patchkite/docs:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

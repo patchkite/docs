@@ -2,7 +2,7 @@
 # Private repositories need a one-time `docker login ghcr.io` on the VM (read:packages token).
 services:
   docs:
-    image: ghcr.io/patchkite/docsatest
+    image: ghcr.io/patchkite/docs:latest
     restart: unless-stopped
     ports:
       - "127.0.0.1:8081:80"

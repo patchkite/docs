@@ -1,0 +1,70 @@
+---
+// Splash hero: the same sky as patchkite.com (night in dark mode, day in light mode) with the kite on its string.
+import { LinkButton } from '@astrojs/starlight/components';
+
+const { data } = Astro.locals.starlightRoute.entry;
+const { title = data.title, tagline, actions = [] } = data.hero || {};
+const install = 'npm install -g @patchkite/cli';
+
+const KITE = 'M118.10 28.62A14.00 14.00 0 0 1 137.90 28.62L200.40 91.12A14.00 14.00 0 0 1 202.63 108.02L140.12 216.28A14.00 14.00 0 0 1 115.88 216.28L53.37 108.02A14.00 14.00 0 0 1 55.60 91.12Z';
+const FACET = 'M138.00 113.72A5.00 5.00 0 0 1 143.00 108.72L182.02 108.72A5.00 5.00 0 0 1 186.35 116.22L147.33 183.80A5.00 5.00 0 0 1 138.00 181.30Z';
+
+// Seeded so the sky is the same on every build.
+let seed = 7;
+const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+const stars = Array.from({ length: 70 }, () => ({
+	x: +(rnd() * 100).toFixed(2),
+	y: +(rnd() * 100).toFixed(2),
+	r: +(0.5 + rnd() * 1.1).toFixed(2),
+	a: +(0.3 + rnd() * 0.6).toFixed(2),
+}));
+---
+
+<div class="pk-hero not-content">
+	<svg class="pk-stars" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+		{stars.map((s) => <circle cx={s.x} cy={s.y} r={s.r * 0.1} opacity={s.a} />)}
+	</svg>
+	<svg class="pk-flight" viewBox="0 0 600 420" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+		<path class="pk-string" d="M455 214 C 430 300, 330 330, 250 360 S 90 410, -20 430" />
+		<g transform="translate(455 214) rotate(12) scale(0.62) translate(-128 -237.28)">
+			<g class="pk-kite">
+				<path class="pk-kite-body" fill-rule="evenodd" d={KITE + FACET} />
+			</g>
+		</g>
+	</svg>
+
+	<div class="pk-hero-copy">
+		<p class="pk-eyebrow">Documentation</p>
+		<h1 id="_top" data-page-title set:html={title} />
+		{tagline && <p class="pk-tagline" set:html={tagline} />}
+
+		<div class="pk-install">
+			<span class="pk-prompt" aria-hidden="true">$</span>
+			<code>{install}</code>
+			<button type="button" data-copy={install}>Copy</button>
+		</div>
+
+		{
+			actions.length > 0 && (
+				<div class="pk-actions">
+					{actions.map(({ attrs: { class: className, ...attrs } = {}, icon, link: href, text, variant }) => (
+						<LinkButton {href} {variant} icon={icon?.name} class:list={[className]} {...attrs}>
+							{text}
+							{icon?.html && <Fragment set:html={icon.html} />}
+						</LinkButton>
+					))}
+				</div>
+			)
+		}
+	</div>
+</div>
+
+<script>
+	for (const button of document.querySelectorAll<HTMLButtonElement>('.pk-install button[data-copy]')) {
+		button.addEventListener('click', async () => {
+			await navigator.clipboard.writeText(button.dataset.copy ?? '');
+			button.textContent = 'Copied';
+			setTimeout(() => (button.textContent = 'Copy'), 1600);
+		});
+	}
+</script>

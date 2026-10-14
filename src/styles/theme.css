@@ -248,7 +248,8 @@ main .content-panel:first-child p:not(h1 + p) { color: inherit; }
 	top: var(--pk-step-top, 0);
 	width: 2.1rem;
 	height: 2.8rem;
-	padding-top: 0.42rem;
+	/* centre the number on the kite's centroid (≈ 45 % down), nudged up a touch optically */
+	line-height: calc(2.8rem * 0.86);
 	clip-path: var(--pk-kite-shape);
 	background: var(--pk-kite);
 	color: #fff;
@@ -257,7 +258,6 @@ main .content-panel:first-child p:not(h1 + p) { color: inherit; }
 	font-stretch: 72%;
 	font-weight: 700;
 	font-size: 1.05rem;
-	line-height: 1;
 	font-variant-numeric: tabular-nums;
 }
 .pk-step + .pk-step::before { --pk-step-top: 2.75rem; }
@@ -296,7 +296,7 @@ main .content-panel:first-child p:not(h1 + p) { color: inherit; }
 }
 @media (max-width: 30rem) {
 	.sl-markdown-content .pk-step { padding-inline-start: 2.6rem; }
-	.pk-step::before { width: 1.7rem; height: 2.3rem; font-size: 0.9rem; padding-top: 0.36rem; }
+	.pk-step::before { width: 1.7rem; height: 2.3rem; font-size: 0.9rem; line-height: calc(2.3rem * 0.86); }
 	.pk-step::after { inset-inline-start: calc(0.85rem - 6px); top: calc(var(--pk-step-top, 0rem) + 2.6rem); }
 }
 
